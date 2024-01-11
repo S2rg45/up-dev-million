@@ -23,3 +23,51 @@ URL_Server/docs#
 ## Versiones
 
 0.0.1
+
+## Body de pruebas
+
+| **api**						            | **Nombre**		                    |  
+|-------------------------------------------|---------------------------------------|
+| **localhost:8000/million/change_price**   | {"property_owner":                    |
+|                                           |    {"name": "luis Hamilton",          |
+|                                           |    "address": "Carere"},              |
+|                                           |  "change_price_property":             |
+|                                           |    {"name": "aranjuez",               |
+|                                           |    "address": "carrera 71 --2s",      |
+|                                           |    "price": "124"}                    |
+|                                           |  }                                    |   
+
+| **localhost:8000/million/update_image**   | {"property_owner":                    |
+|                                           |    {"name": "luis Hamilton",          |
+|                                           |    "address": "Carere"},              |
+|                                           |  "change_price_property":             |
+|                                           |    {"name": "aranjuez",               |
+|                                           |    "address": "carrera 71 --2s",      |
+|                                           |     }                                 |
+|                                           |  }                                    | 
+
+| **localhost:8000/million/create_property**| {                                         | 
+|                                           |       "owner": {                          | 
+|                                           |           "name": "1434534222",           | 
+|                                           |           "address":  "132432",           | 
+|                                           |           "photo": "",                    | 
+|                                           |           "birthday": "2001/01/01"        | 
+|                                           |       },                                  | 
+|                                           |       "property": {                       | 
+|                                           |           "name": "231325",               | 
+|                                           |           "address": "carrera 71 --2s",   | 
+|                                           |           "price": "1525",                | 
+|                                           |           "codeInternal": "1",            | 
+|                                           |           "year": "2020/01/02"            | 
+|                                           |       },                                  | 
+|                                           |       "property_image": {                 | 
+|                                           |           "file": "/jpg",                 | 
+|                                           |           "enabled": false                | 
+|                                           |       },                                  | 
+|                                           |      "property_trace": {                  | 
+|                                           |           "dateSale": "2021/01/01",       | 
+|                                           |           "name": "JUAN camilo",          | 
+|                                           |           "value": "300000000",           | 
+|                                           |           "tax": "10"                     | 
+|                                           |            }                              | 
+|                                           |       }                                   |   
