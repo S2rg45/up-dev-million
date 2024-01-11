@@ -1,19 +1,19 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class Owner(BaseModel):
-    name: str
-    address: str
-    photo: str
-    birthday: str
+    name: str = Field(..., min_length=3, max_length=50)
+    address: str = Field(..., min_length=3, max_length=50)
+    photo: str = Field(..., min_length=3, max_length=50)
+    birthday: str = Field(..., min_length=3, max_length=50)
 
 
 class Property(BaseModel):
-    name: str
-    address: str
-    price: str
-    codeInternal: str
-    year: str
+    name: str = Field(..., min_length=3, max_length=50)
+    address: str = Field(..., min_length=3, max_length=50)
+    price: str = Field(..., min_length=3, max_length=50)
+    codeInternal: str = Field(..., max_length=10)
+    year: str = Field(..., min_length=3, max_length=50)
 
 
 class PropertyImage(BaseModel):
@@ -29,23 +29,23 @@ class PropertyTrace(BaseModel):
 
 
 class PropertyImageOwner(BaseModel):
-    name: str
-    address: str
+    name: str = Field(..., min_length=3, max_length=50)
+    address: str = Field(..., min_length=3, max_length=50)
 
 
 class PropertyImageProperty(BaseModel):
-    name: str
-    address: str
+    name: str = Field(..., min_length=3, max_length=50)
+    address: str = Field(..., min_length=3, max_length=50)
 
 
 class PropertyChangeOwner(BaseModel):
-    name: str
-    address: str
+    name: str = Field(..., min_length=3, max_length=50)
+    address: str = Field(..., min_length=3, max_length=50)
 
 
 class PropertyChangePrice(BaseModel):
-    name: str
-    address: str
-    price: str
+    name: str = Field(..., min_length=3, max_length=50)
+    address: str = Field(..., min_length=3, max_length=50)
+    price: str = Field(..., min_length=3, max_length=50)
 
 

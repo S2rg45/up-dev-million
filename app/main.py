@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 # Importing routes
 
-from .services.change_price.routes import change_route
-from .services.create_property.routes import create_route
-from .services.image_property.routes import image_routes
+from app.services.change_price.routes import change_route
+from app.services.create_property.routes import create_route
+from app.services.image_property.routes import image_routes
 
 # Creating FastAPI instance
 app = FastAPI(title="Million API", 
@@ -23,9 +24,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"])
 
-
 # Including routes
 app.include_router(change_route.router)
 app.include_router(create_route.router)
 app.include_router(image_routes.router)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=9000)
 

@@ -8,3 +8,5 @@ uuid
 python-multipart
 aiofiles
 boto3
+pytest
+httpx

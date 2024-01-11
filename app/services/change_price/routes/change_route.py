@@ -10,7 +10,9 @@ router = APIRouter(prefix="/million")
 image_service = ChangePriceService()
 
 
-@router.post('/change_price/')
+@router.post('/change_price/',
+             response_model_exclude_unset=True, 
+             status_code=200)
 async def image(property_owner: PropertyChangeOwner,
                 change_price_property: PropertyChangePrice) -> JSONResponse:
     """
@@ -25,7 +27,7 @@ async def image(property_owner: PropertyChangeOwner,
 
         data_owner = image_service.get_data_owner(dict(request.get("property_owner")))
         data_property = image_service.update_price_property(dict(request.get("change_price_property")), data_owner.get("IdOwner"))
-    except OSError as e:
-        raise HTTPException(status_code=400, detail="Exception")     
-    return  JSONResponse(content={"result": "Change price property successfully"}, 
-                        status_code=200)
+        return  JSONResponse(content={"result": "Change price property successfully"})   
+    except Exception as e:
+        raise HTTPException(status_code=400,content={"result": "Fail change price property"} ,detail="Exception") from e    
+         
