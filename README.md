@@ -2,6 +2,10 @@
 
 Este repositorio se crean tres servicios en FastAPI, para poder validar informacion de propiedades en USA
 
+## Infraestructura
+
+Se implementa una infra de microservicio, implementado con programacion orientada a objetos.
+
 ## Contexto del trabajo
 
 | **Cargo**						 | **Nombre**		     |  
