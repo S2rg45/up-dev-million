@@ -1,13 +1,15 @@
 import uuid
+#importar la clase para crear la propiedad
 from ..store.create_store import CreateProperty
 
-
+#clase para el servicio
 class CreateService:
 
     def __init__(self):
         self.store = CreateProperty()
 
 
+    #crear la propiedad
     def create_property(self, data, id_owner: uuid.UUID):
         try:
             data_property = data
@@ -21,6 +23,7 @@ class CreateService:
             return False
         
 
+    #crear la traza de la propiedad
     def create_property_trace(self, data, id_property: uuid.UUID):
         try:
             data_property_trace = data
@@ -34,6 +37,7 @@ class CreateService:
             return False
 
 
+    #crear la imagen de la propiedad
     def create_property_image(self, data, id_property: uuid.UUID):      
         try:
             data_property_image = data
@@ -47,6 +51,7 @@ class CreateService:
             return False
         
 
+    #crear el propietario
     def create_owner(self, data):
         try:
             data_owner = data

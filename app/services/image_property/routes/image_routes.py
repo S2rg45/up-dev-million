@@ -2,14 +2,17 @@ from fastapi import Header, APIRouter, HTTPException, File, UploadFile
 import json
 from fastapi.responses import JSONResponse
 
+#Importar los modelos
 from ....components.models.schemas import PropertyImageOwner, PropertyImageProperty
+#Importar los servicios
 from ..service.image_service import ImageService
 
-
+#implementacion de la ruta
 router = APIRouter(prefix="/million")
+#instancia de la clase
 image_service = ImageService()
 
-
+#endpoint para obtener la imagen de una propiedad
 @router.post('/update_image/')
 async def image(property_owner: PropertyImageOwner,
                 image_property: PropertyImageProperty,
@@ -19,15 +22,20 @@ async def image(property_owner: PropertyImageOwner,
     :return: result of add images in bucket   
     """
     try:
+        #request
         request = {
             "property_owner": property_owner,
             "image_property": image_property
         }
-
+        #obtener el id del propietario
         data_owner = image_service.get_data_owner(dict(request.get("property_owner")))
+        #actualizar el precio de la propiedad
         data_property = image_service.get_data_property(dict(request.get("image_property")), data_owner.get("IdOwner"))
+        #actualizar la imagen de la propiedad
         image_service.update_images_bucket({"IdProperty": data_property}, file)
     except OSError as e:
-        raise HTTPException(status_code=400, detail="Exception")     
+        #response Exception
+        raise HTTPException(status_code=400, detail="Exception")   
+    #response  
     return  JSONResponse(content={"result": "Updated images in bucket"}, 
                         status_code=200)

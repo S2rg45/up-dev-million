@@ -1,14 +1,16 @@
 
+#instancia de la clase
 from ....components.lib.connect_db import ConnectionDb
 from ....config.settings import config
 
-
+#clase para el almacenamiento
 class ChangePrice:
 
     def __init__(self):
         self.client = ConnectionDb()
 
 
+    #obtener el id del propietario
     def table_owner(self, data):
         try:
             name_collection = config["local"]["collection_owner"]
@@ -18,6 +20,7 @@ class ChangePrice:
         return data_owner
 
 
+    #actualizar el precio de la propiedad
     def table_property_price(self, data, update_data):
         try:
             name_collection = config["local"]["collection_property"]

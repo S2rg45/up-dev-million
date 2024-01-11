@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Configuración de entorno
 config = {
   "local": {
     "connection": os.getenv("URI_DB_MONGO_LOCAL"),

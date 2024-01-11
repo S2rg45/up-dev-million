@@ -3,13 +3,14 @@ from ....components.lib.connect_db import ConnectionDb
 from ....config.settings import config
 
 
-
+# --------------------------------------------------------------------------------
+# Class ImageProperty
 class ImageProperty:
 
     def __init__(self):
         self.client = ConnectionDb()
 
-
+    # obtener datos del id de la propiedad
     def table_property(self, data):
         try:
             name_collection = config["local"]["collection_property"]
@@ -20,6 +21,7 @@ class ImageProperty:
         return data_property
 
 
+    # Actualizar la fecha dentro de la colección 
     def table_property_image(self, data, update_data):
         try:
             name_collection = config["local"]["collection_property_image"]
@@ -30,6 +32,7 @@ class ImageProperty:
         return True
 
 
+    # obtener el id del Owner
     def table_owner(self, data):
         try:
             name_collection = config["local"]["collection_owner"]

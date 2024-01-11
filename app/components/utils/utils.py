@@ -1,6 +1,6 @@
 from fastapi import status, HTTPException
 
-
+#Importar los modelos
 class ResponseException(Exception):
     def __init__(self,  detail: str):
         self.detail = detail
