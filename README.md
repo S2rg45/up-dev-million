@@ -31,26 +31,24 @@ https://github.com/S2rg45/up-dev-million
 
 ## Body de pruebas
 
-| **api**						            | **Nombre**		                    |  
-|-------------------------------------------|---------------------------------------|
-| **localhost:8000/million/change_price**   | {"property_owner":                    |
-|                                           |    {"name": "luis Hamilton",          |
-|                                           |    "address": "Carere"},              |
-|                                           |  "change_price_property":             |
-|                                           |    {"name": "aranjuez",               |
-|                                           |    "address": "carrera 71 --2s",      |
-|                                           |    "price": "124"}                    |
-|                                           |  }                                    |   
-
-| **localhost:8000/million/update_image**   | {"property_owner":                    |
-|                                           |    {"name": "luis Hamilton",          |
-|                                           |    "address": "Carere"},              |
-|                                           |  "change_price_property":             |
-|                                           |    {"name": "aranjuez",               |
-|                                           |    "address": "carrera 71 --2s",      |
-|                                           |     }                                 |
-|                                           |  }                                    | 
-
+| **api**						            | **Nombre**		                        |     
+|-------------------------------------------|-------------------------------------------|
+| **localhost:8000/million/change_price**   | {"property_owner":                        |
+|                                           |    {"name": "luis Hamilton",              |
+|                                           |    "address": "Carere"},                  |
+|                                           |  "change_price_property":                 |
+|                                           |    {"name": "aranjuez",                   |
+|                                           |    "address": "carrera 71 --2s",          |
+|                                           |    "price": "124"}                        |
+|                                           |  }                                        |   
+| **localhost:8000/million/update_image**   | {"property_owner":                        |
+|                                           |    {"name": "luis Hamilton",              |
+|                                           |    "address": "Carere"},                  |
+|                                           |  "change_price_property":                 |
+|                                           |    {"name": "aranjuez",                   |
+|                                           |    "address": "carrera 71 --2s",          |
+|                                           |     }                                     |
+|                                           |  }                                        | 
 | **localhost:8000/million/create_property**| {                                         | 
 |                                           |       "owner": {                          | 
 |                                           |           "name": "1434534222",           | 
