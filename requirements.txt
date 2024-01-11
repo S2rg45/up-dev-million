@@ -1,0 +1,10 @@
+fastapi
+pymongo[srv]
+pydantic==2.4.2
+uvicorn
+python-dotenv
+motor
+uuid
+python-multipart
+aiofiles
+boto3
