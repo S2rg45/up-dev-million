@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional
+from uuid import UUID
 
 #------------------------------------------------------------#
 #------------------------ Schemas ---------------------------#
@@ -53,3 +54,38 @@ class PropertyChangePrice(BaseModel):
     price: str = Field(..., min_length=3, max_length=50)
 
 
+class TokenSchema(BaseModel):
+    access_token: str
+    refresh_token: str
+
+
+class DevItem(BaseModel):
+    user: str
+
+
+class User_Process_Files(BaseModel):
+    username: str
+    email: str  
+    password: str
+
+
+class User_process(BaseModel):
+    name: str
+    email: str
+    password: str
+    
+
+class UserAuth(BaseModel):
+    username: str
+    email: str = Field(..., description="user email")
+    password: str = Field(..., min_length=5, max_length=100, description="user password")
+
+
+class UserLoginAuth(BaseModel):
+    email: str
+    password: str
+
+
+class TokenPayload(BaseModel):
+    sub: str = None
+    exp: int = None

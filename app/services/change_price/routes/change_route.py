@@ -1,21 +1,24 @@
-from fastapi import Header, APIRouter, HTTPException, File, UploadFile
+from fastapi import Header, APIRouter, HTTPException, File, UploadFile, Depends
 import json
 from fastapi.responses import JSONResponse
 
 from ....components.models.schemas import PropertyChangeOwner, PropertyChangePrice
 from ..service.change_service import ChangePriceService
+from ....components.security.validate_token import OAuth2PasswordBearerWithCookie
 
 #implementacion de la ruta
 router = APIRouter(prefix="/million")
 #instancia de la clase
 image_service = ChangePriceService()
+#instancia de la clase
+oauth2_scheme = OAuth2PasswordBearerWithCookie()
 
 #endpoint para cambiar el precio de una propiedad
 @router.post('/change_price/',
              response_model_exclude_unset=True, 
              status_code=200)
 async def image(property_owner: PropertyChangeOwner,
-                change_price_property: PropertyChangePrice) -> JSONResponse:
+                change_price_property: PropertyChangePrice = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
     """
     This function is used to change price property
     :return: update price property  

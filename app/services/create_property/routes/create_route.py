@@ -1,4 +1,4 @@
-from fastapi import Header, APIRouter, status, HTTPException, Response
+from fastapi import Header, APIRouter, status, HTTPException, Response, Depends
 import json
 from fastapi.responses import JSONResponse
 
@@ -6,6 +6,8 @@ from fastapi.responses import JSONResponse
 from ....components.models.schemas import Property, PropertyTrace, PropertyImage, Owner
 #Importar los servicios
 from ..service.create_service import CreateService
+#Importar la clase de validacion del token
+from ....components.security.validate_token import OAuth2PasswordBearerWithCookie
 
 #implementacion de la ruta
 router = APIRouter(prefix="/million",
@@ -13,6 +15,8 @@ router = APIRouter(prefix="/million",
 
 #instancia de la clase
 create_service = CreateService()
+#instancia de la clase
+oauth2_scheme = OAuth2PasswordBearerWithCookie()
 
 #endpoint para crear una propiedad
 @router.post('/create_property/',
@@ -21,7 +25,7 @@ create_service = CreateService()
 async def property(owner: Owner, 
                    property: Property,
                    property_image: PropertyImage, 
-                   property_trace: PropertyTrace) -> JSONResponse:
+                   property_trace: PropertyTrace = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
     """
     This function is used for create property
     :return: json response with create property   

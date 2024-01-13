@@ -1,6 +1,5 @@
 fastapi
 pymongo[srv]
-pydantic==2.4.2
 uvicorn
 python-dotenv
 motor
@@ -10,3 +9,8 @@ aiofiles
 boto3
 pytest
 httpx
+jose
+pydantic
+passlib
+python-jose[cryptography]
+bcrypt==4.0.1

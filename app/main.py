@@ -7,6 +7,8 @@ import uvicorn
 from app.services.change_price.routes import change_route
 from app.services.create_property.routes import create_route
 from app.services.image_property.routes import image_routes
+from app.services.singup.routes import singup_route
+from app.services.login.routes import login_route
 
 # Creating FastAPI instance
 app = FastAPI(title="Million API", 
@@ -25,6 +27,8 @@ app.add_middleware(
     allow_headers=["*"])
 
 # Including routes
+app.include_router(login_route.router)
+app.include_router(singup_route.router)
 app.include_router(change_route.router)
 app.include_router(create_route.router)
 app.include_router(image_routes.router)
