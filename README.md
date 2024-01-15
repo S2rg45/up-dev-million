@@ -14,8 +14,17 @@ Se implementa una infra de microservicio, implementado con programacion orientad
 | **Servicios**                  | /million/image        |
 |                                | /million/create_property |
 |                                | /million/update_price |
+|                                | /singup               |
+|                                | /login                |
 | **Arquitectura**               | Servicios             |
 | **Database**                   | MongoDB               |
+
+
+## Security
+
+Se crea una capa de seguridad para que se puedan crear usuarios que solamente puedan utilizar ellos los servicios creados, la contrasena esta encriptada por "bcrypt", y se guarda de esta manera en Base de datos.
+
+Se genera un login que genera un token con codifica "JsonWeb token", por el usuario e email, para generar la validacion al momento de querer utilizar cualquier servicio.
 
 ## Documentacion de servicios
 
@@ -74,3 +83,14 @@ https://github.com/S2rg45/up-dev-million
 |                                           |           "tax": "10"                     | 
 |                                           |            }                              | 
 |                                           |       }                                   |   
+| **localhost:8000/million/singup**         | {                                         |
+|                                           |    "username": "luis Hamilton",           |
+|                                           |    "email": "Juan@gmail.com",             |
+|                                           |    "password": "sdfsda"                   |
+|                                           | }                                         |
+| **localhost:8000/million/login**          |                                           |
+|                                           | {                                         |
+|                                           |    "email": "Juan@gmail.com",             |
+|                                           |    "password": "sdfsda"                   |
+|                                           | }                                         |
+|                                           |                                           |

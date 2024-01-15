@@ -25,13 +25,15 @@ oauth2_scheme = OAuth2PasswordBearerWithCookie()
 async def property(owner: Owner, 
                    property: Property,
                    property_image: PropertyImage, 
-                   property_trace: PropertyTrace = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
+                   property_trace: PropertyTrace, 
+                   current_access = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
     """
     This function is used for create property
     :return: json response with create property   
     """
     try:
         #request
+        
         request = {
             "owner": owner,
             "property": property,
@@ -43,11 +45,12 @@ async def property(owner: Owner,
         #crear la propiedad
         id_property = create_service.create_property(dict(request.get("property")), id_owner)
         #crear la imagen y la traza de la propiedad
-        create_service.create_property_image(dict(request.get("property_image")), id_property)
+        create = create_service.create_property_image(dict(request.get("property_image")), id_property)
         #crear la traza de la propiedad
-        create_service.create_property_trace(dict(request.get("property_trace")), id_property)
+        response = create_service.create_property_trace(dict(request.get("property_trace")), id_property)
         #response
         return JSONResponse(content={"result":"Created"})
     except Exception as e:
         #response Exception
-        raise HTTPException(status_code=400,content={"result":"Fail create property"}) from e                                                                                                                                                                                                                       
+        print(e)
+        raise HTTPException(status_code=400,detail=str(e)) from e  

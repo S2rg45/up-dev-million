@@ -26,7 +26,11 @@ from main import app
 client = TestClient(app)
 
 
+
+
+
 def test_create_property():
+
     response = client.post("/million/create_property/", 
                             json={
                                     "owner": {
@@ -150,7 +154,72 @@ def test_change_price_error():
                                 ]
                             }
     
+
+def test_signup():
+    response = client.post("/million/singup/", 
+                            json={"name": "juan camilo",
+                                "email": "juan@gmail.com",
+                            })
+    assert response.status_code == 200
+    assert response.json() == {"result":"Create new user successfully"}
+
+def test_signup_error():
+    response = client.post("/million/singup/", 
+                            json={"name": "juan camilo",
+                                "email": "juan@gmail.com"
+                            })
+    assert response.status_code == 422
+    assert response.json() == {
+                                "detail": [
+                                    {
+                                        "type": "value_error.missing",
+                                        "loc": [
+                                            "body",
+                                            "password"
+                                        ],
+                                        "msg": "field required",
+                                        "ctx": {
+                                            "limit_value": None
+                                        }
+                                    }
+                                ]
+                            }
     
+
+def test_signup_error2():
+    response = client.post("/million/singup/", 
+                            json={"name": "juan camilo",
+                                "email": "juan@gmail.com",
+                                "password": "123"
+                            })
+    assert response.status_code == 422
+    assert response.json() == {
+                                "detail": [
+                                    {
+                                        "type": "value_error.min_length",
+                                        "loc": [
+                                            "body",
+                                            "password"
+                                        ],
+                                        "msg": "ensure this value has at least 8 characters",
+                                        "ctx": {
+                                            "limit_value": 8
+                                        }
+                                    }
+                                ]
+                            }
+    
+
+def test_signup_error3():
+    response = client.post("/million/singup/", 
+                            json={"name": "juan camilo",
+                                "email": "juan@gmail.com",  
+                                "password": "12345678"
+                            })
+    assert response.status_code == 400
+    assert response.json() == {"result":"User with this email already exist"}
+
+
 def test_image_property_fail():
     response = client.post("/million/image_property/", 
                             json={"property_owner": 

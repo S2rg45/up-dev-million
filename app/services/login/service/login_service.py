@@ -14,16 +14,24 @@ class LoginService:
     def login_with_data(self, data):
         try:
             email = {"email": data.get("email")}
-            return  self.store.login_email(email)
+            return self.store.login_email(email)
         except Exception as e:
             print(e)
             return False
         
     #crear nuevo usuario
-    def verify_password(self, data, data_db):
+    def create_token(self, data, data_db):
         try:
             password = self.settings_token.verify_password(data.get("password"), data_db.get("password"))
-            return {"token": self.settings_token.create_access_token(password)}
+            print("password", password)
+            if not password:
+                return False
+            data_create_token = {
+                "username": data_db.get("username"),
+                "email": data_db.get("email"),
+                "date": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            }
+            return {"token": self.settings_token.create_access_token(data_create_token)}
         except Exception as e:
             print(e)
             return False

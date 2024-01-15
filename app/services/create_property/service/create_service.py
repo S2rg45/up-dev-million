@@ -31,7 +31,7 @@ class CreateService:
             data_property_trace["IdPropertyTrace"] = id_property_trace
             data_property_trace["IdProperty"] = id_property
             self.store.table_property_trace(data_property_trace)
-            return True
+            return {"create": "True"}
         except Exception as e:
             print(e)
             return False
@@ -45,7 +45,7 @@ class CreateService:
             data_property_image["IdPropertyImage"] = id_property_image
             data_property_image["IdProperty"] = id_property
             self.store.table_property_image(data_property_image)
-            return True
+            return {"create": "True"}
         except Exception as e:
             print(e)
             return False

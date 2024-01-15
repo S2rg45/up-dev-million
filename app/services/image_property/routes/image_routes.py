@@ -19,8 +19,9 @@ oauth2_scheme = OAuth2PasswordBearerWithCookie()
 #endpoint para obtener la imagen de una propiedad
 @router.post('/update_image/')
 async def image(property_owner: PropertyImageOwner,
-                image_property: PropertyImageProperty = Depends(oauth2_scheme.validate_token),
-                file: UploadFile = File(...) ) -> JSONResponse:
+                image_property: PropertyImageProperty,
+                file: UploadFile = File(...),
+                current_access = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
     """
     This function is used to get the image of the property
     :return: result of add images in bucket   

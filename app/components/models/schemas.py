@@ -23,7 +23,7 @@ class Property(BaseModel):
 
 class PropertyImage(BaseModel):
     file: Optional[str] = None
-    enabled: bool 
+    enabled: str = Field(...) 
 
 
 class PropertyTrace(BaseModel):

@@ -18,7 +18,8 @@ oauth2_scheme = OAuth2PasswordBearerWithCookie()
              response_model_exclude_unset=True, 
              status_code=200)
 async def image(property_owner: PropertyChangeOwner,
-                change_price_property: PropertyChangePrice = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
+                change_price_property: PropertyChangePrice,
+                current_access = Depends(oauth2_scheme.validate_token)) -> JSONResponse:
     """
     This function is used to change price property
     :return: update price property  
@@ -36,6 +37,6 @@ async def image(property_owner: PropertyChangeOwner,
         #response
         return  JSONResponse(content={"result": "Change price property successfully"})   
     except Exception as e:
-        #response Exception
-        raise HTTPException(status_code=400,content={"result": "Fail change price property"} ,detail="Exception") from e    
+        print(e)
+        raise HTTPException(status_code=400,detail=str(e)) from e
          

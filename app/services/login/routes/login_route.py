@@ -4,7 +4,7 @@ import json
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
 
-from ....components.models.schemas import UserAuth
+from ....components.models.schemas import UserLoginAuth
 from ..service.login_service import LoginService
 
 #implementacion de la ruta
@@ -16,7 +16,7 @@ login_service = LoginService()
 @router.post('/login/',
              response_model_exclude_unset=True, 
              status_code=200)
-async def login(data: UserAuth) -> JSONResponse:
+async def login(data: UserLoginAuth) -> JSONResponse:
     """
     This function is used for validate login with user and password
     :return: token 
@@ -33,12 +33,13 @@ async def login(data: UserAuth) -> JSONResponse:
             return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST,
                                 content={"result":"Incorrect user or password"})  
         #Verificacion de la contraseña
-        verify_password = login_service.verify_password(dict(request.get("user")), data_user)
-        if verify_password:
+        token = login_service.create_token(dict(request.get("user")), data_user)
+        print(token)
+        if token:
             #response
-            return  JSONResponse(content={"result": verify_password})   
+            return  JSONResponse(content={"result": token})   
         #response
-        raise HTTPException(status_code=400,detail="Fail create new user")
+        raise HTTPException(status_code=400,detail="Fail create")
     except Exception as e:
         #response Exception
         print(e)
